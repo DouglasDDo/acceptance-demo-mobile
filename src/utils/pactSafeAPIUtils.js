@@ -2,8 +2,22 @@ import axios from 'axios';
 import HE from 'he'
 
 // placeholder for API tokens
-import {} from '@env'
+import {PS_AUTH_TOKEN, PS_ACCESS_ID, PS_GROUP_ID} from '@env'
 
-export const getContractGroupByID;
+const psGroupEndpoint = 'https://pactsafe.io/load/json?sid=' + PS_ACCESS_ID;
+
+export const getContractGroupByID = async (group_key) => {
+    const url = psGroupEndpoint + '&gkey=' + group_key;
+
+    try {
+        await axios.get(url, { headers: { 'Authorization': `Bearer ${PS_ACCESS_ID}` } })
+        .then( (response) => {
+            //
+            console.log(response.data) 
+        });
+    } catch(error) {
+        console.log(error);
+    }
+};
 
 export const getLatestPublishedContractById;

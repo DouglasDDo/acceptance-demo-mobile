@@ -77,6 +77,7 @@ export default function RegisterScreen({ navigation }) {
         errorText={password.error}
         secureTextEntry
       />
+      {/* TODO: Replace? Add checkbox. */}
       <Button
         mode="contained"
         onPress={onSignUpPressed}

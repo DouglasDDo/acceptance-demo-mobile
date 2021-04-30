@@ -44,10 +44,15 @@ export default function RegisterScreen({ navigation }) {
   }
 
   // PS stuff goes here
-  // Works like CompDidMount; runs side effects after first render
+  // Works like ComponentDidMount; runs side effects after first render
   useEffect( () => {
     getContractGroupByID(PS_GROUP_ID, setPsGroup);
-    console.log(psGroup.value)
+    // ...how the fuck do you get the contract_id in... still hard-coding K ID
+    // getLatestPublishedContractById(contract_id, setPsGroup);
+    // Idea: create a separate component/screen for terms -> pass in K ID as props
+    // use useEffect there to render screen then take in K ID
+    // overlay? or new screen?
+    getLatestPublishedContractById(0, setPsGroup);
   }, []);
 
   return (

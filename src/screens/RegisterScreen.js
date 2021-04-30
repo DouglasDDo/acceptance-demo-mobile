@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Text } from 'react-native-paper'
 import Background from '../components/Background'
@@ -12,7 +12,9 @@ import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 import { nameValidator } from '../helpers/nameValidator'
 
-import { getContractGroupByKey, getLatestPublishedContractById } from '../utils/pactSafeApiUtils'
+import { getContractGroupByID, getContractGroupByKey, getLatestPublishedContractById } from '../utils/pactSafeApiUtils'
+
+import { PS_GROUP_ID } from '@env'
 
 export default function RegisterScreen({ navigation }) {
   // Login State & Setters
@@ -20,9 +22,9 @@ export default function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
 // PS State & Setters
-  const [agreed, setAgreed] = useState({});
-  const [psGroup, setPsGroup]= useState({});
-  const [psContract, setPsContract]= useState({});
+  const [agreed, setAgreed] = useState({ value: false, error: ''});
+  const [psGroup, setPsGroup] = useState({ value: '', error: ''});
+  const [psContract, setPsContract] = useState({ value: '', error: ''});
 
 
   const onSignUpPressed = () => {
@@ -42,6 +44,11 @@ export default function RegisterScreen({ navigation }) {
   }
 
   // PS stuff goes here
+  // Works like CompDidMount; runs side effects after first render
+  useEffect( () => {
+    getContractGroupByID(PS_GROUP_ID, setPsGroup);
+    console.log(psGroup.value)
+  }, []);
 
   return (
     <Background>

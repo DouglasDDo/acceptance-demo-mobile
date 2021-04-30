@@ -12,10 +12,18 @@ import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 import { nameValidator } from '../helpers/nameValidator'
 
+import { getContractGroupByKey, getLatestPublishedContractById } from '../utils/pactSafeApiUtils'
+
 export default function RegisterScreen({ navigation }) {
+  // Login State & Setters
   const [name, setName] = useState({ value: '', error: '' })
   const [email, setEmail] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
+// PS State & Setters
+  const [agreed, setAgreed] = useState({});
+  const [psGroup, setPsGroup]= useState({});
+  const [psContract, setPsContract]= useState({});
+
 
   const onSignUpPressed = () => {
     const nameError = nameValidator(name.value)
@@ -32,6 +40,8 @@ export default function RegisterScreen({ navigation }) {
       routes: [{ name: 'Dashboard' }],
     })
   }
+
+  // PS stuff goes here
 
   return (
     <Background>

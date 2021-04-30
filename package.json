@@ -36,5 +36,18 @@
     "eslint-plugin-react": "^7.21.5",
     "prettier": "^2.2.1"
   },
-  "private": true
+  "private": true,
+  "name": "ps-mobile",
+  "description": "This repo is proudly sponsored by:",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/venits/react-native-login-template.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/venits/react-native-login-template/issues"
+  },
+  "homepage": "https://github.com/venits/react-native-login-template#readme"
 }

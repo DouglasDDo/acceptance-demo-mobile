@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Text } from 'react-native-paper'
+import { CheckBox } from 'react-native-elements'
+
 import Background from '../components/Background'
 import Logo from '../components/Logo'
 import Header from '../components/Header'
 import Button from '../components/Button'
 import TextInput from '../components/TextInput'
 import BackButton from '../components/BackButton'
+
 import { theme } from '../core/theme'
+
 import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 import { nameValidator } from '../helpers/nameValidator'
 
 import { getContractGroupByID, getContractGroupByKey, getLatestPublishedContractById } from '../utils/pactSafeApiUtils'
-
 import { PS_GROUP_ID } from '@env'
 
 export default function RegisterScreen({ navigation }) {
@@ -24,8 +27,9 @@ export default function RegisterScreen({ navigation }) {
 // PS State & Setters
   const [agreed, setAgreed] = useState({ value: false, error: ''});
   const [psGroup, setPsGroup] = useState({ value: '', error: ''});
-  const [psContract, setPsContract] = useState({ value: '', error: ''});
 
+// Checkbox
+  const [checked, setChecked] = useState({ value: '', error: '' });  
 
   const onSignUpPressed = () => {
     const nameError = nameValidator(name.value)
@@ -43,6 +47,18 @@ export default function RegisterScreen({ navigation }) {
     })
   }
 
+
+  onCheckboxClicked = () => {
+    if(checked.value){ 
+      setChecked({ value: false });
+      setAgreed({ value: false });
+    } else {
+      setChecked({ value: true });
+      setAgreed({ value: true });
+    }
+    return; 
+  };
+
   // PS stuff goes here
   // Works like ComponentDidMount; runs side effects after first render
   useEffect( () => {
@@ -52,7 +68,7 @@ export default function RegisterScreen({ navigation }) {
     // Idea: create a separate component/screen for terms -> pass in K ID as props
     // use useEffect there to render screen then take in K ID
     // overlay? or new screen?
-    getLatestPublishedContractById(0, setPsGroup);
+    // getLatestPublishedContractById(0, setPsGroup);
   }, []);
 
   return (

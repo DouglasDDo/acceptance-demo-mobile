@@ -41,5 +41,34 @@ export const getLatestPublishedContractById = async (contract_id, setContract) =
 
 // export const getContractById = async () => {};
 
+export const getContractForOverlay = async (contract_id, setContract, setDisplayed) => {
+    const url; 
+
+    try {
+        await axios.get(url)
+        .then( (response) => {
+            setContract({value: HE.unescape(response.data.data.body), error: ''});
+            return HE.unescape(response.data.data.body);
+        })
+        .then( (response) =>{
+            // pass in: version id of contract, signer id (look to form),  event type (displayed)
+        });
+    } catch(error) {
+        console.log(error)
+    };
+};
+
+export const agreeToContracts = async (setAgreed, ...contract_ids) =>{
+    const url; 
+
+    try {
+        await axios.post()
+        .then()
+        .then();
+    } catch(error) {
+
+    };
+};
+
 
 export const getLatestPublishedContractById;

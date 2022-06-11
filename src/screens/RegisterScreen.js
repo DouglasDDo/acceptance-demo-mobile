@@ -9,6 +9,7 @@ import Header from '../components/Header'
 import Button from '../components/Button'
 import TextInput from '../components/TextInput'
 import BackButton from '../components/BackButton'
+import TermsOverlay from '../components/TermsOverlay'
 
 import { theme } from '../core/theme'
 
@@ -17,7 +18,7 @@ import { passwordValidator } from '../helpers/passwordValidator'
 import { nameValidator } from '../helpers/nameValidator'
 
 import { getContractGroupByID, getContractGroupByKey, getLatestPublishedContractById } from '../utils/pactSafeApiUtils'
-import { PS_GROUP_ID } from '@env'
+import { PS_GROUP_ID_REGISTER } from '@env'
 
 export default function RegisterScreen({ navigation }) {
   // Login State & Setters
@@ -48,6 +49,7 @@ export default function RegisterScreen({ navigation }) {
   }
 
 
+  // Feels duplicative
   onCheckboxClicked = () => {
     if(checked.value){ 
       setChecked({ value: false });
@@ -106,6 +108,12 @@ export default function RegisterScreen({ navigation }) {
         secureTextEntry
       />
       {/* TODO: Replace? Add checkbox. */}
+      <View style={styles.row}>
+        <Text>Already have an account? </Text>
+        <TouchableOpacity onPress={() => navigation.replace('LoginScreen')}>
+          <Text style={styles.link}>Login</Text>
+        </TouchableOpacity>
+      </View>
       <Button
         mode="contained"
         onPress={onSignUpPressed}

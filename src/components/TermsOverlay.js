@@ -29,14 +29,17 @@ export default function TermsOverlay(contract_id){
   const [visible, setVisible] = useState(false);
   const [psContract, setPsContract] = useState({ value: '', error: ''});
 
+  // Testing
+  const contract_id = 0;
+  const setPsContract = () => console.log("hi")
 
   const toggleOverlay = () => {
     setVisible(!visible);
   };
 
-  useEffect( () => {
-    getLatestPublishedContractById(contract_id, setPsContract);
-  }, []);
+  // useEffect( () => {
+  //   getLatestPublishedContractById(contract_id, setPsContract);
+  // }, []);
 
   //TODO: figure out how to make the hyperlink to terms toggle Overlay
   // Pass in comp as props?
